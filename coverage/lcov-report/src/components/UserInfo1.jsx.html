@@ -96,7 +96,26 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -146,34 +165,72 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 &nbsp;
 const UserInfo1 = (props) =&gt; {
   return (
     &lt;div&gt;
-      {props.stockInfo.map((stock, key) =&gt; {
+      {props.stockInfo.map((stock) =&gt; {
         return (
-          &lt;table className="userInfo1" key={key}&gt;
+          &lt;table className="userInfo1" key={stock.symbol}&gt;
             &lt;thead&gt;
-              &lt;div id="userEquity"&gt;Your Equity&lt;/div&gt;
-              &lt;div id="userEquityNum"&gt;${stock.equity}&lt;/div&gt;
+              {/* &lt;tr&gt;
+                &lt;td id="userEquity"&gt;Your Equity&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr&gt;
+                &lt;td id="userEquityNum"&gt;${(stock.equity).toLocaleString()}&lt;/td&gt;
+              &lt;/tr&gt; */}
+              &lt;caption id="userEquity"&gt;Your Equity&lt;/caption&gt;
+              &lt;div id="userEquityNum"&gt;${(stock.equity).toLocaleString()}&lt;/div&gt;
             &lt;/thead&gt;
             &lt;tbody&gt;
               &lt;tr&gt;
                 &lt;td id="userInfo1Left"&gt;Cost&lt;/td&gt;
-                &lt;td id="userInfo1Right"&gt;${stock.cost}&lt;/td&gt;
+                &lt;td id="userInfo1Right"&gt;${(stock.cost).toLocaleString()}&lt;/td&gt;
               &lt;/tr&gt;
             &lt;/tbody&gt;
             &lt;tbody&gt;
               &lt;tr&gt;
                 &lt;td id="userInfo1Left"&gt;Today's Return&lt;/td&gt;
-                &lt;td id="userInfo1Right"&gt;${stock.TR}&lt;/td&gt;
+                &lt;td id="userInfo1Right"&gt;
+               +$
+                  {stock.TR.toLocaleString()}
+                  (
+                  {((stock.TR / stock.equity) * 100).toFixed(2)}
+                  %
+                  )
+                &lt;/td&gt;
               &lt;/tr&gt;
             &lt;/tbody&gt;
             &lt;tbody&gt;
               &lt;tr&gt;
                 &lt;td id="userInfo1Left"&gt;Total Return&lt;/td&gt;
-                &lt;td id="userInfo1Right"&gt;$&lt;/td&gt;
+                &lt;td id="userInfo1Right"&gt;
+                 $
+                  {(stock.equity - stock.cost).toFixed(2)}
+                  &amp;nbsp;(
+                  {(((stock.equity - stock.cost).toFixed(2) / stock.cost) * 100).toFixed(2)}
+                %)
+                &lt;/td&gt;
               &lt;/tr&gt;
             &lt;/tbody&gt;
           &lt;/table&gt;
@@ -202,7 +259,7 @@ export default UserInfo1;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Apr 04 2019 00:08:22 GMT-0700 (PDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Apr 08 2019 19:56:37 GMT-0700 (PDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>
