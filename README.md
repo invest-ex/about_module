@@ -2,5 +2,5 @@
 
 ``
 npm install
-npm run de:setup
+npm run db:setup
 ``
