@@ -2,3 +2,4 @@ node_modules
 .gitignore
 .git
 .DS_store
+InformationModule.pem
