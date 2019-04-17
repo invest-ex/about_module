@@ -25,9 +25,9 @@
         <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -105,33 +105,13 @@
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -193,12 +173,6 @@ const UserInfo1 = (props) =&gt; {
         return (
           &lt;table className="userInfo1" key={stock.symbol}&gt;
             &lt;thead&gt;
-              {/* &lt;tr&gt;
-                &lt;td id="userEquity"&gt;Your Equity&lt;/td&gt;
-              &lt;/tr&gt;
-              &lt;tr&gt;
-                &lt;td id="userEquityNum"&gt;${(stock.equity).toLocaleString()}&lt;/td&gt;
-              &lt;/tr&gt; */}
               &lt;caption id="userEquity"&gt;Your Equity&lt;/caption&gt;
               &lt;div id="userEquityNum"&gt;${(stock.equity).toLocaleString()}&lt;/div&gt;
             &lt;/thead&gt;
@@ -212,12 +186,15 @@ const UserInfo1 = (props) =&gt; {
               &lt;tr&gt;
                 &lt;td id="userInfo1Left"&gt;Today's Return&lt;/td&gt;
                 &lt;td id="userInfo1Right"&gt;
+                  &lt;span className="totalReturn"&gt;
                +$
-                  {stock.TR.toLocaleString()}
+                    {stock.TR.toLocaleString()}
+                  &lt;/span&gt;
+                  &lt;span&gt;
                   (
-                  {((stock.TR / stock.equity) * 100).toFixed(2)}
-                  %
-                  )
+                    {((stock.TR / stock.equity) * 100).toFixed(2)}
+                  %)
+                  &lt;/span&gt;
                 &lt;/td&gt;
               &lt;/tr&gt;
             &lt;/tbody&gt;
@@ -225,11 +202,16 @@ const UserInfo1 = (props) =&gt; {
               &lt;tr&gt;
                 &lt;td id="userInfo1Left"&gt;Total Return&lt;/td&gt;
                 &lt;td id="userInfo1Right"&gt;
+                  {(stock.equity - stock.cost) &gt; 0 ? <span class="branch-0 cbranch-no" title="branch not covered" >'+' </span>: '-'}
+                  &lt;span className="totalReturn"&gt;
                  $
-                  {(stock.equity - stock.cost).toFixed(2)}
-                  &amp;nbsp;(
-                  {(((stock.equity - stock.cost).toFixed(2) / stock.cost) * 100).toFixed(2)}
+                    {(stock.equity - stock.cost).toLocaleString()}
+                  &lt;/span&gt;
+                  &lt;span&gt;
+                    (
+                    {(((stock.equity - stock.cost).toFixed(2) / stock.cost) * 100).toFixed(2)}
                 %)
+                  &lt;/span&gt;
                 &lt;/td&gt;
               &lt;/tr&gt;
             &lt;/tbody&gt;
@@ -237,18 +219,6 @@ const UserInfo1 = (props) =&gt; {
 &nbsp;
         );
       })}
-      {/* &lt;div&gt;
-        &lt;span id="userInfo1Left"&gt;Cost&lt;/span&gt;
-        &lt;span id="userInfo1Right"&gt;5000&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-        &lt;span id="userInfo1Left"&gt;Today's Return&lt;/span&gt;
-        &lt;span id="userInfo1Right"&gt;$-197.87&lt;/span&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-        &lt;span id="userInfo1Left"&gt;Total Return&lt;/span&gt;
-        &lt;span id="userInfo1Right"&gt;$-900.19&lt;/span&gt;
-      &lt;/div&gt; */}
     &lt;/div&gt;
   );
 };
@@ -259,7 +229,7 @@ export default UserInfo1;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Apr 08 2019 19:56:37 GMT-0700 (PDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Apr 16 2019 22:00:25 GMT-0700 (Pacific Daylight Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>

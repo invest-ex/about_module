@@ -10,7 +10,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       stockInfo: [],
-      tags: [],
     };
   }
 
@@ -30,15 +29,6 @@ class App extends React.Component {
         this.setState({
           stockInfo: parsedJSON,
         });
-        return fetch(`/stocks/tags/${parsedJSON[0].tags}`, {
-          method: 'GET',
-        })
-          .then(response => response.json())
-          .then((parsedJSON2) => {
-            this.setState({
-              tags: parsedJSON2
-            });
-          });
       });
   }
 
@@ -58,7 +48,7 @@ class App extends React.Component {
         <br></br>
         <br></br>
         <div>
-          <Collections stockInfo={this.state.stockInfo} tag={this.state.tags}/>
+          <Collections stockInfo={this.state.stockInfo}/>
         </div>
       </div>
     );

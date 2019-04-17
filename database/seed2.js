@@ -1,7 +1,5 @@
 const faker = require('faker');
 const db = require('./index.js');
-const Tag = require('./Tag.js');
-
 
 const symbols = [
   'MSFT', 'AAPL', 'FB', 'BABA', 'XOM', 'V', 'JPM', 'BAC', 'VZ', 'INTC', 'WFC', 'PFE', 'CSCO', 'T', 'MRK', 'BA', 'TSM', 'KO', 'DIS', 'ORCL', 'CMCSA', 'NFLX', 'C', 'NKE', 'LLY', 'CRM',
@@ -28,17 +26,4 @@ for (let i = 0; i < collections.length; i++) {
     const randomPrice = faker.finance.amount(80, 180, 2);
     pricesArr.push(randomPrice);
   }
-
-  const sampleTags = {
-    tag: collections[i],
-    symbols: symbolsArr,
-    price: pricesArr,
-  };
-
-  const insertSampleTags = () => {
-    Tag.create(sampleTags)
-      .then(() => db.close())
-      .catch(err => console.log('errrerererer', err));
-  };
-  insertSampleTags();
 }
