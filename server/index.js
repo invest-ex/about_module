@@ -22,6 +22,6 @@ app.get('/api/quotes/:symbol', (req, res) => {
   request.findStock(req.params).then(data => res.send(data));
 });
 
-app.get('/stocks/tags/:tag', (req, res) => {
-  request.findTag(req.params).then(data => res.send(data));
-});
+// app.get('/stocks/tags/:tag', (req, res) => {
+//   request.findTag(req.params).then(data => res.send(data));
+// });
