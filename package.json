@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --coverage || true",
     "start": "node server/index.js",
-    "react-dev": "webpack -p --watch",
+    "react-dev:watch": "webpack -p --watch",
+    "react-dev": "webpack -p",
     "db:setup": "node database/seed.js & node database/seed2.js"
   },
   "jest": {
