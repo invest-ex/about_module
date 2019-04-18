@@ -8,7 +8,7 @@
     "start": "node server/index.js",
     "react-dev:watch": "webpack -p --watch",
     "react-dev": "webpack -p",
-    "db:setup": "node database/seed.js & node database/seed2.js"
+    "db:setup": "node database/seed.js"
   },
   "jest": {
     "snapshotSerializers": [

@@ -5,11 +5,6 @@ mongoose.Promise = global.Promise;
 
 const stockSchema = new mongoose.Schema({
   symbol: String,
-  equity: Number,
-  cost: Number,
-  shares: Number,
-  TR: Number,
-  PD: Number,
   CEO: String,
   employees: Number,
   HQc: String,
@@ -17,7 +12,6 @@ const stockSchema = new mongoose.Schema({
   founded: Number,
   MC: Number,
   PER: Number,
-  AV: Number,
   description: String,
   high: Number,
   low: Number,
@@ -30,4 +24,18 @@ const stockSchema = new mongoose.Schema({
 
 const Stock = mongoose.model('stock', stockSchema);
 
-module.exports = Stock;
+
+const userSchema = new mongoose.Schema({
+  equity: Number,
+  cost: Number,
+  shares: Number,
+  TR: Number,
+  PD: Number,
+  AV: Number,
+  userId: Number,
+});
+
+const User = mongoose.model('user', userSchema);
+
+module.exports.Stock = Stock;
+module.exports.User = User;

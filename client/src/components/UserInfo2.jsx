@@ -3,9 +3,9 @@ import React from 'react';
 const UserInfo2 = (props) => {
   return (
     <div>
-      {props.stockInfo.map((stock) => {
+      {props.userInfo.map((stock) => {
         return (
-          <table className="userInfo2" key={stock.symbol}>
+          <table className="userInfo2" key={stock.userId}>
             <thead>
               <caption id="userAv">Your Average Cost</caption>
               <div id="userAvNum">

@@ -19,9 +19,9 @@ app.use('/', express.static(path.join(__dirname, '../client/dist')));
 app.use('/stocks/:symbol', express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/api/about/:symbol', (req, res) => {
-  request.findStock(req.params).then(data => res.send(data));
+  request.findStock(req.params.symbol).then(data => res.send(data));
 });
 
-// app.get('/stocks/tags/:tag', (req, res) => {
-//   request.findTag(req.params).then(data => res.send(data));
-// });
+app.get('/api/user/:userId', (req, res) => {
+  request.findUser(req.params.userId).then(data => res.send(data));
+});

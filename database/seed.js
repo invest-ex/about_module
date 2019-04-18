@@ -1,6 +1,6 @@
 const faker = require('faker');
 const db = require('./index.js');
-const Stock = require('./Stock.js');
+const { Stock, User } = require('./Stock.js');
 
 const symbols = [
   'MSFT', 'AAPL', 'FB', 'BABA', 'XOM', 'V', 'JPM', 'BAC', 'VZ', 'INTC', 'WFC', 'PFE', 'CSCO', 'T', 'MRK', 'BA', 'TSM', 'KO', 'DIS', 'ORCL', 'CMCSA', 'NFLX', 'C', 'NKE', 'LLY', 'CRM',
@@ -48,11 +48,6 @@ for (let i = 0; i < 100; i++) {
   }
   const sampleStocks = {
     symbol: symbols[i],
-    equity: faker.finance.amount(5000, 20000, 2),
-    cost: faker.finance.amount(2000, 10000, 2),
-    shares: faker.random.number(300),
-    TR: faker.finance.amount(100, 2000, 2),
-    PD: faker.finance.amount(0, 100, 2),
     CEO: faker.name.findName(),
     employees: faker.random.number({ min: 300, max: 20000 }),
     HQc: faker.address.city(),
@@ -60,7 +55,6 @@ for (let i = 0; i < 100; i++) {
     founded: faker.random.number({ min: 1880, max: 2010 }),
     MC: MC[i],
     PER: faker.finance.amount(10, 90, 2),
-    AV: AV[i],
     description: faker.lorem.paragraphs(3),
     high: todayHigh,
     low: (parseInt(todayHigh) - 3.86),
@@ -73,7 +67,25 @@ for (let i = 0; i < 100; i++) {
   const insertSampleStocks = () => {
     Stock.create(sampleStocks)
       .then(() => db.close())
-      .catch(err => console.log('errrerererer', err));
+      .catch(err => console.log('errrerererer1', err));
   };
   insertSampleStocks();
+}
+
+for (let i = 1; i <= 100; i++) {
+  const sampleUsers = {
+    userId: i,
+    equity: faker.finance.amount(5000, 20000, 2),
+    cost: faker.finance.amount(2000, 10000, 2),
+    shares: faker.random.number(300),
+    TR: faker.finance.amount(100, 2000, 2),
+    PD: faker.finance.amount(0, 100, 2),
+    AV: AV[i],
+  };
+  const insertUsers = () => {
+    User.create(sampleUsers)
+      .then(() => db.close())
+      .catch(err => console.log('errrerererer2', err));
+  };
+  insertUsers();
 }

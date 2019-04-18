@@ -3,9 +3,9 @@ import React from 'react';
 const UserInfo1 = (props) => {
   return (
     <div>
-      {props.stockInfo.map((stock) => {
+      {props.userInfo.map((stock) => {
         return (
-          <table className="userInfo1" key={stock.symbol}>
+          <table className="userInfo1" key={stock.userId}>
             <thead>
               <caption id="userEquity">Your Equity</caption>
               <div id="userEquityNum">${(stock.equity).toLocaleString()}</div>
