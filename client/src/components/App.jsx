@@ -14,10 +14,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getStockInfo();
+    this.getCompanyInfo();
   }
 
-  getStockInfo() {
+  getCompanyInfo() {
     const url = window.location.pathname;
     const splitUrl = url.split('/');
     const symbolId = splitUrl[splitUrl.length - 2];

@@ -18,7 +18,7 @@ app.listen(port, () => console.log('APP IS LISTENING'));
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 app.use('/stocks/:symbol', express.static(path.join(__dirname, '../client/dist')));
 
-app.get('/api/quotes/:symbol', (req, res) => {
+app.get('/api/about/:symbol', (req, res) => {
   request.findStock(req.params).then(data => res.send(data));
 });
 
