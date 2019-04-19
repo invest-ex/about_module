@@ -45,6 +45,8 @@ const collections = [
   'Semiconductors', 'Pharmaceutical', 'Retail', 'Automotive', 'REIT', 'Banking', 'Food', 'Materials', 'Aerospace',
 ];
 
+const headers = ["symbol","CEO","employees","HQc","HQs","founded","MC","PER","description","high","low","open","volume","yearHigh","yearLow","tags"];
+console.log(headers.join(','), '\n');
 
 for (let i = 0; i < 100; i++) {
   const todayHigh = faker.finance.amount(50, 300, 2);
@@ -79,5 +81,7 @@ for (let i = 0; i < 100; i++) {
   //     .catch(err => console.log('errrerererer1', err));
   // };
   // insertSampleStocks();
-  console.log(JSON.stringify(sampleStocks));
+  
+  const csv = headers.map(columnName => JSON.stringify(sampleStocks[columnName])).join(',');
+  console.log(csv, '\n');
 }

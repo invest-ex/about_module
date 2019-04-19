@@ -11,6 +11,9 @@ const AV = [
   3.19, 10.3, 5.34, 10.14, 7.21, 3.88, 13.07, 6.42, 9.16, 4.88, 5.55,
 ];
 
+const headers = ['userId', 'equity', 'cost', 'shares', 'TR', 'PD', 'AV'];
+console.log(headers.join(','), '\n');
+
 for (let i = 1; i <= 100; i++) {
   const sampleUsers = {
     userId: i,
@@ -27,5 +30,6 @@ for (let i = 1; i <= 100; i++) {
   //     .catch(err => console.log('errrerererer2', err));
   // };
   // insertUsers();
-  console.log(JSON.stringify(sampleUsers));
+  const csv = headers.map(columnName => JSON.stringify(sampleUsers[columnName])).join(',');
+  console.log(csv, '\n');
 }
