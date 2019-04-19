@@ -23,11 +23,13 @@ class App extends React.Component {
     const url = window.location.pathname;
     const splitUrl = url.split('/');
     const symbolId = splitUrl[splitUrl.length - 2];
+    console.log(symbolId);
     fetch(`/api/about/${symbolId}`, {
       method: 'GET',
     })
       .then(response => response.json())
       .then((parsedJSON) => {
+        console.log(parsedJSON);
         this.setState({
           stockInfo: parsedJSON,
         });
