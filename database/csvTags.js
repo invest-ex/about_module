@@ -1,3 +1,8 @@
+const fs = require('fs');
+const file = fs.createWriteStream('./testTags.csv');
+
+console.time('tags');
+
 const collections = [
   '100 Most Popular', 'Upcoming Earnings', 'New On TradeDesk', 'Technology', 'Oil and Gas', 'Finance', 'Software Service', 'Energy', 'Manufacturing', 'Consumer Products', 'ETF', 'Video Games', 'Social Media', 'Health', 'Entertainment', 'Internet', 'Electronic',
   'Semiconductors', 'Pharmaceutical', 'Retail', 'Automotive', 'REIT', 'Banking', 'Food', 'Materials', 'Aerospace',
@@ -32,9 +37,9 @@ for (let first = 0; first < alphabet.length; first++) {
 
 
 const headers = ['symbol', 'tag0', 'tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6'];
-console.log(headers.join(','));
+file.write(`${headers.join(',')}\n`);
 
-for (let i = 0; i < 10; i++) {
+function generateTagInfo() {
   const collectionsArr = [];
   const newCollections = collections.slice();
   for (let j = 0; j < 7; j++) {
@@ -42,14 +47,39 @@ for (let i = 0; i < 10; i++) {
     collectionsArr.push(newCollections[index]);
     newCollections.splice(index, 1);
   }
-  const sampleTags = {
-    symbol: symbols[i],
-  };
+  const sampleTags = {};
 
   for (let x = 0; x < 7; x++) {
     sampleTags[`tag${x}`] = collectionsArr[x];
   }
-
-  const csv = headers.map(columnName => JSON.stringify(sampleTags[columnName])).join(',');
-  console.log(csv);
+  return sampleTags;
 }
+
+function writetenMillionTimes(writer, encoding, callback) {
+  let i = 10;
+  write();
+  function write() {
+    let ok = true;
+    do {
+      i--;
+      let tagInfo = generateTagInfo();
+      tagInfo.symbol = symbols[i];
+      const data = `${headers.map(columnName => JSON.stringify(tagInfo[columnName])).join(',')}\n`;
+      if (i === 0) {
+        // last time!
+        writer.write(data, encoding, callback);
+      } else {
+        // See if we should continue, or wait.
+        // Don't pass the callback, because we're not done yet.
+        ok = writer.write(data, encoding);
+      }
+    } while (i > 0 && ok);
+    if (i > 0) {
+      // had to stop early!
+      // write some more once it drains
+      writer.once('drain', write);
+    }
+  }
+}
+
+writetenMillionTimes(file, 'UTF-8', () => { console.timeEnd('tags'); });
