@@ -22,7 +22,7 @@ for (let i = 1; i <= 10000000; i++) {
     shares: faker.random.number(300),
     TR: faker.finance.amount(100, 2000, 2),
     PD: faker.finance.amount(0, 100, 2),
-    AV: AV[i],
+    AV: AV[Math.floor(Math.random() * AV.length)],
   };
   // const insertUsers = () => {
   //   User.create(sampleUsers)
