@@ -1,5 +1,5 @@
 const fs = require('fs');
-const file = fs.createWriteStream('./testTags.csv');
+const file = fs.createWriteStream('./tags.csv');
 
 console.time('tags');
 
@@ -56,7 +56,7 @@ function generateTagInfo() {
 }
 
 function writetenMillionTimes(writer, encoding, callback) {
-  let i = 10;
+  let i = 10000000;
   write();
   function write() {
     let ok = true;
