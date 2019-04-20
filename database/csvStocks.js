@@ -1,6 +1,8 @@
 const faker = require('faker');
-// const db = require('./index.js');
-// const { Stock, User } = require('./Stock.js');
+const fs = require('fs');
+const file = fs.createWriteStream('./stock.csv');
+
+console.time('stocks');
 
 // Make tickers
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase().split('');
@@ -15,7 +17,7 @@ for (let first = 0; first < alphabet.length; first++) {
       word += alphabet[third];
       for (let fourth = 0; fourth < alphabet.length; fourth++) {
         word += alphabet[fourth];
-        for (let fifth = 0; fifth < alphabet.length-4; fifth++) {
+        for (let fifth = 0; fifth < alphabet.length; fifth++) {
           word += alphabet[fifth];
           symbols.push(word);
           word = word.slice(0, -1);
@@ -45,10 +47,11 @@ const collections = [
   'Semiconductors', 'Pharmaceutical', 'Retail', 'Automotive', 'REIT', 'Banking', 'Food', 'Materials', 'Aerospace',
 ];
 
-const headers = ["symbol","CEO","employees","HQc","HQs","founded","MC","PER","description","high","low","open","volume","yearHigh","yearLow","tags"];
-console.log(headers.join(','), '\n');
+const headers = ['symbol', 'CEO', 'employees', 'HQc', 'HQs', 'founded', 'MC', 'PER', 'description', 'high', 'low', 'open', 'volume', 'yearHigh', 'yearLow', 'tags'];
+file.write(`${headers.join(',')}\n`);
 
-for (let i = 0; i < 100; i++) {
+
+function generateCompanyInfo() {
   const todayHigh = faker.finance.amount(50, 300, 2);
   const collectionsArr = [];
   const newCollections = collections.slice();
@@ -58,13 +61,12 @@ for (let i = 0; i < 100; i++) {
     newCollections.splice(index, 1);
   }
   const sampleStocks = {
-    symbol: symbols[i],
     CEO: faker.name.findName(),
     employees: faker.random.number({ min: 300, max: 20000 }),
     HQc: faker.address.city(),
     HQs: faker.address.state(),
     founded: faker.random.number({ min: 1880, max: 2010 }),
-    MC: MC[i],
+    MC: MC[Math.floor(Math.random() * MC.length)],
     PER: faker.finance.amount(10, 90, 2),
     description: faker.lorem.paragraphs(3),
     high: todayHigh,
@@ -75,13 +77,34 @@ for (let i = 0; i < 100; i++) {
     yearLow: (parseInt(todayHigh) - 28.03),
     tags: collectionsArr,
   };
-  // const insertSampleStocks = () => {
-  //   Stock.create(sampleStocks)
-  //     .then(() => db.close())
-  //     .catch(err => console.log('errrerererer1', err));
-  // };
-  // insertSampleStocks();
-  
-  const csv = headers.map(columnName => JSON.stringify(sampleStocks[columnName])).join(',');
-  console.log(csv, '\n');
+  return sampleStocks;
 }
+
+function writetenMillionTimes(writer, encoding, callback) {
+  let i = 10000000;
+  write();
+  function write() {
+    let ok = true;
+    do {
+      i--;
+      let companyInfo = generateCompanyInfo();
+      companyInfo.symbol = symbols[i];
+      const data = `${headers.map(columnName => JSON.stringify(companyInfo[columnName])).join(',')}\n`;
+      if (i === 0) {
+        // last time!
+        writer.write(data, encoding, callback);
+      } else {
+        // See if we should continue, or wait.
+        // Don't pass the callback, because we're not done yet.
+        ok = writer.write(data, encoding);
+      }
+    } while (i > 0 && ok);
+    if (i > 0) {
+      // had to stop early!
+      // write some more once it drains
+      writer.once('drain', write);
+    }
+  }
+}
+
+writetenMillionTimes(file, 'utf8', () => { console.timeEnd('stocks'); });

@@ -12,9 +12,9 @@ const AV = [
 ];
 
 const headers = ['userId', 'equity', 'cost', 'shares', 'TR', 'PD', 'AV'];
-console.log(headers.join(','), '\n');
+console.log(headers.join(','));
 
-for (let i = 1; i <= 100; i++) {
+for (let i = 1; i <= 10000000; i++) {
   const sampleUsers = {
     userId: i,
     equity: faker.finance.amount(5000, 20000, 2),
@@ -31,5 +31,5 @@ for (let i = 1; i <= 100; i++) {
   // };
   // insertUsers();
   const csv = headers.map(columnName => JSON.stringify(sampleUsers[columnName])).join(',');
-  console.log(csv, '\n');
+  console.log(csv);
 }
