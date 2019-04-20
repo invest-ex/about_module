@@ -1,11 +1,11 @@
 symbol,tag0,tag1,tag2,tag3,tag4,tag5,tag6
-"AAAAJ","Manufacturing","New On TradeDesk","Social Media","Finance","Electronic","Automotive","Food"
-"AAAAI","ETF","100 Most Popular","Materials","Health","Pharmaceutical","Upcoming Earnings","Technology"
-"AAAAH","Aerospace","Semiconductors","New On TradeDesk","Oil and Gas","Banking","REIT","Food"
-"AAAAG","Internet","ETF","Semiconductors","Upcoming Earnings","REIT","Social Media","Electronic"
-"AAAAF","Energy","Pharmaceutical","Technology","Aerospace","Video Games","Food","Finance"
-"AAAAE","Pharmaceutical","Software Service","Electronic","Automotive","Consumer Products","Materials","100 Most Popular"
-"AAAAD","Consumer Products","Finance","Aerospace","Internet","Software Service","100 Most Popular","ETF"
-"AAAAC","Consumer Products","Semiconductors","Entertainment","Energy","ETF","Retail","Social Media"
-"AAAAB","Video Games","Retail","Health","Pharmaceutical","Semiconductors","Aerospace","Energy"
-"AAAAA","Pharmaceutical","Food","Health","Materials","Upcoming Earnings","REIT","New On TradeDesk"
+'AAAAJ','Consumer Products','Internet','Energy','Video Games','Upcoming Earnings','New On TradeDesk','Technology'
+'AAAAI','Energy','Entertainment','Automotive','Social Media','Electronic','Upcoming Earnings','ETF'
+'AAAAH','Social Media','Banking','Entertainment','Food','Video Games','Oil and Gas','Materials'
+'AAAAG','Technology','Automotive','Health','Internet','100 Most Popular','REIT','Upcoming Earnings'
+'AAAAF','100 Most Popular','Consumer Products','REIT','Energy','Upcoming Earnings','Manufacturing','Social Media'
+'AAAAE','Consumer Products','Electronic','Aerospace','Energy','Retail','Materials','Health'
+'AAAAD','Internet','Electronic','Consumer Products','Energy','Finance','Technology','New On TradeDesk'
+'AAAAC','Technology','Consumer Products','Manufacturing','REIT','Entertainment','Oil and Gas','ETF'
+'AAAAB','Finance','New On TradeDesk','Retail','ETF','Technology','Video Games','Oil and Gas'
+'AAAAA','Finance','Internet','Banking','Oil and Gas','REIT','Manufacturing','Technology'

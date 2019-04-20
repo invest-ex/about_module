@@ -30,6 +30,14 @@ for (let i = 1; i <= 10000000; i++) {
   //     .catch(err => console.log('errrerererer2', err));
   // };
   // insertUsers();
-  const csv = headers.map(columnName => JSON.stringify(sampleUsers[columnName])).join(',');
+  const csvData = headers.map(columnName => {
+    const value = sampleUsers[columnName];
+    if (typeof value === "number") {
+      return value;
+    } else {
+      return `'${value}'`
+    }
+  });
+  const csv = csvData.join(',');
   console.log(csv);
 }

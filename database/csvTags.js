@@ -64,7 +64,7 @@ function writetenMillionTimes(writer, encoding, callback) {
       i--;
       let tagInfo = generateTagInfo();
       tagInfo.symbol = symbols[i];
-      const data = `${headers.map(columnName => JSON.stringify(tagInfo[columnName])).join(',')}\n`;
+      const data = `${headers.map(columnName => `'${tagInfo[columnName]}'`).join(',')}\n`;
       if (i === 0) {
         // last time!
         writer.write(data, encoding, callback);

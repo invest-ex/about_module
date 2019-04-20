@@ -56,13 +56,13 @@ function generateCompanyInfo() {
     founded: faker.random.number({ min: 1880, max: 2010 }),
     MC: MC[Math.floor(Math.random() * MC.length)],
     PER: faker.finance.amount(10, 90, 2),
-    description: faker.lorem.paragraphs(3),
+    description: faker.lorem.sentences(8),
     high: todayHigh,
     low: (parseInt(todayHigh) - 3.86),
     open: (parseInt(todayHigh) - 1.39),
     volume: faker.finance.amount(1, 40, 2),
     yearHigh: (parseInt(todayHigh) + 34.68),
-    yearLow: (parseInt(todayHigh) - 28.03)
+    yearLow: (parseInt(todayHigh) - 28.03),
   };
   return sampleStocks;
 }
@@ -76,7 +76,15 @@ function writetenMillionTimes(writer, encoding, callback) {
       i--;
       let companyInfo = generateCompanyInfo();
       companyInfo.symbol = symbols[i];
-      const data = `${headers.map(columnName => JSON.stringify(companyInfo[columnName])).join(',')}\n`;
+      const dataArr = headers.map(columnName => {
+        const value = companyInfo[columnName];
+        if (typeof value === "number") {
+          return value;
+        } else {
+          return `'${value}'`;
+        }
+      });
+      const data = `${dataArr.join(',')}\n`;
       if (i === 0) {
         // last time!
         writer.write(data, encoding, callback);
