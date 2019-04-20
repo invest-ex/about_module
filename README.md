@@ -32,3 +32,8 @@ https://github.com/invest-ex/ratings_history_module
 | POST   | `/api/user/:userId`            | Add user portfolio                                           |
 | PUT    | `/api/user/:userId`            | Update user's portfolio                                      |
 | DELETE | `/api/user/:userId`            | Delete user's portfolio                                      |
+|        |                                |                                                              |
+| GET    | `/api/tags/:userId`            | Get information on company's tags                            |
+| POST   | `/api/tags/:userId`            | Add tags to company                                          |
+| PUT    | `/api/tags/:userId`            | Update company's tags                                        |
+| DELETE | `/api/tags/:userId`            | Delete company's tags                                        |
