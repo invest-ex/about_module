@@ -31,7 +31,7 @@ for (let first = 0; first < alphabet.length; first++) {
 }
 
 
-const headers = ['symbol', 'tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6', 'tag7'];
+const headers = ['symbol', 'tag0', 'tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6'];
 console.log(headers.join(','));
 
 for (let i = 0; i < 10; i++) {
@@ -46,7 +46,7 @@ for (let i = 0; i < 10; i++) {
     symbol: symbols[i],
   };
 
-  for (let x = 1; x <= 7; x++) {
+  for (let x = 0; x < 7; x++) {
     sampleTags[`tag${x}`] = collectionsArr[x];
   }
 

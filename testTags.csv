@@ -1,11 +1,11 @@
-symbol,tag1,tag2,tag3,tag4,tag5,tag6,tag7
-"AAAAA","Video Games","Oil and Gas","Energy","Food","ETF","Manufacturing",
-"AAAAB","Retail","Technology","Semiconductors","Energy","REIT","Oil and Gas",
-"AAAAC","Banking","Aerospace","Automotive","Social Media","Entertainment","Upcoming Earnings",
-"AAAAD","Upcoming Earnings","Health","Energy","ETF","Pharmaceutical","100 Most Popular",
-"AAAAE","Upcoming Earnings","Semiconductors","Internet","Video Games","Oil and Gas","Retail",
-"AAAAF","Technology","Internet","Video Games","Food","Software Service","Manufacturing",
-"AAAAG","ETF","Technology","Pharmaceutical","Food","Materials","Automotive",
-"AAAAH","Aerospace","Health","Entertainment","Banking","Materials","Social Media",
-"AAAAI","Materials","Electronic","Finance","Aerospace","ETF","Consumer Products",
-"AAAAJ","Banking","Social Media","Manufacturing","REIT","100 Most Popular","Oil and Gas",
+symbol,tag0,tag1,tag2,tag3,tag4,tag5,tag6
+"AAAAA","Social Media","ETF","Upcoming Earnings","Video Games","Retail","Internet","Consumer Products"
+"AAAAB","Entertainment","REIT","Manufacturing","Social Media","Health","Software Service","Semiconductors"
+"AAAAC","Aerospace","Social Media","Video Games","Banking","Technology","Entertainment","Manufacturing"
+"AAAAD","Automotive","Health","100 Most Popular","Consumer Products","Video Games","Upcoming Earnings","Social Media"
+"AAAAE","Automotive","Manufacturing","Energy","Social Media","Semiconductors","ETF","Food"
+"AAAAF","Consumer Products","ETF","Oil and Gas","Banking","Software Service","Automotive","Upcoming Earnings"
+"AAAAG","Video Games","Entertainment","Energy","Internet","Health","Oil and Gas","100 Most Popular"
+"AAAAH","REIT","Video Games","Electronic","Semiconductors","Software Service","Manufacturing","Materials"
+"AAAAI","Video Games","Food","Software Service","Health","100 Most Popular","Semiconductors","Entertainment"
+"AAAAJ","Consumer Products","Pharmaceutical","REIT","Electronic","Banking","ETF","New On TradeDesk"
