@@ -1,6 +1,6 @@
 const faker = require('faker');
 const fs = require('fs');
-const file = fs.createWriteStream('./stock.csv');
+const file = fs.createWriteStream('./testStock.csv');
 
 console.time('stocks');
 
@@ -81,7 +81,7 @@ function generateCompanyInfo() {
 }
 
 function writetenMillionTimes(writer, encoding, callback) {
-  let i = 10000000;
+  let i = 10;
   write();
   function write() {
     let ok = true;
@@ -107,4 +107,4 @@ function writetenMillionTimes(writer, encoding, callback) {
   }
 }
 
-writetenMillionTimes(file, 'utf8', () => { console.timeEnd('stocks'); });
+writetenMillionTimes(file, 'UTF-8', () => { console.timeEnd('stocks'); });
