@@ -9,8 +9,9 @@
     "react-dev:watch": "webpack -p --watch",
     "react-dev": "webpack -p",
     "db:setup": "node database/seed.js",
-    "csv:stocks": "node database/csvStocks.js",
-    "csv:users": "node database/csvUsers.js"
+    "generateCSVs": "node database/csvUsers.js > users.csv ; node database/csvTags.js ; node database/csvStockNoTags.js",
+    "seed:PostgreSQL": "node database/indexPG.js",
+    "seed:Cassandra": "node database/indexC.js"
   },
   "jest": {
     "snapshotSerializers": [
