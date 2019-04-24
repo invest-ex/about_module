@@ -2,7 +2,7 @@ node_modules
 bundle.js
 coverage
 InformationModule.pem
-./database/postgresLogin.js
+./server/postgresLogin.js
 stockNoTags.csv
 stocks.csv
 tags.csv
