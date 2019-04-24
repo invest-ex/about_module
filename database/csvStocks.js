@@ -1,6 +1,6 @@
 const faker = require('faker');
 const fs = require('fs');
-const file = fs.createWriteStream('./testStock.csv');
+const file = fs.createWriteStream('./stocks.csv');
 
 console.time('stocks');
 
@@ -48,7 +48,7 @@ const collections = [
 ];
 
 const headers = ['symbol', 'CEO', 'employees', 'HQc', 'HQs', 'founded', 'MC', 'PER', 'description', 'high', 'low', 'open', 'volume', 'yearHigh', 'yearLow', 'tags'];
-file.write(`${headers.join(',')}\n`);
+file.write(`${headers.join('|')}\n`);
 
 
 function generateCompanyInfo() {
@@ -81,7 +81,7 @@ function generateCompanyInfo() {
 }
 
 function writetenMillionTimes(writer, encoding, callback) {
-  let i = 10;
+  let i = 10000000;
   write();
   function write() {
     let ok = true;
@@ -89,7 +89,9 @@ function writetenMillionTimes(writer, encoding, callback) {
       i--;
       let companyInfo = generateCompanyInfo();
       companyInfo.symbol = symbols[i];
-      const data = `${headers.map(columnName => JSON.stringify(companyInfo[columnName])).join(',')}\n`;
+      let data = `${headers.map(columnName => JSON.stringify(companyInfo[columnName])).join('|')}\n`;
+      data = data.replace('[', '{');
+      data = data.replace(']', '}');
       if (i === 0) {
         // last time!
         writer.write(data, encoding, callback);

@@ -12,7 +12,7 @@ const AV = [
 ];
 
 const headers = ['userId', 'equity', 'cost', 'shares', 'TR', 'PD', 'AV'];
-console.log(headers.join(','));
+console.log(headers.join('|'));
 
 for (let i = 1; i <= 10000000; i++) {
   const sampleUsers = {
@@ -38,6 +38,8 @@ for (let i = 1; i <= 10000000; i++) {
       return `'${value}'`
     }
   });
-  const csv = csvData.join(',');
+  const csv = csvData.join('|');
   console.log(csv);
 }
+
+console.error(Math.floor(process.uptime()));
