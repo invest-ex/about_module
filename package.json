@@ -9,7 +9,7 @@
     "react-dev:watch": "webpack -p --watch",
     "react-dev": "webpack -p",
     "db:setup": "node database/seed.js",
-    "generateCSVs": "node database/csvUsers.js > users.csv ; node database/csvStocks.js",
+    "generateCSVs": "node database/csvUsers.js > data/users.csv ; node database/csvStocks.js",
     "seed:PostgreSQL": "psql < database/postgres.sql"
   },
   "jest": {

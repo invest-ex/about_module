@@ -1,6 +1,6 @@
 const faker = require('faker');
 const fs = require('fs');
-const file = fs.createWriteStream('./stocks.csv');
+const file = fs.createWriteStream('./data/stocks.csv');
 
 console.time('stocks');
 
