@@ -37,7 +37,7 @@ for (let first = 0; first < alphabet.length; first++) {
 
 
 const headers = ['symbol', 'tag0', 'tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6'];
-file.write(`${headers.join(',')}\n`);
+file.write(`${headers.join('|')}\n`);
 
 function generateTagInfo() {
   const collectionsArr = [];
@@ -64,7 +64,7 @@ function writetenMillionTimes(writer, encoding, callback) {
       i--;
       let tagInfo = generateTagInfo();
       tagInfo.symbol = symbols[i];
-      const data = `${headers.map(columnName => `'${tagInfo[columnName]}'`).join(',')}\n`;
+      const data = `${headers.map(columnName => JSON.stringify(tagInfo[columnName])).join('|')}\n`;
       if (i === 0) {
         // last time!
         writer.write(data, encoding, callback);

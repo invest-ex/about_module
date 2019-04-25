@@ -1,11 +1,16 @@
-symbol,tag0,tag1,tag2,tag3,tag4,tag5,tag6
-'AAAAJ','Consumer Products','Internet','Energy','Video Games','Upcoming Earnings','New On TradeDesk','Technology'
-'AAAAI','Energy','Entertainment','Automotive','Social Media','Electronic','Upcoming Earnings','ETF'
-'AAAAH','Social Media','Banking','Entertainment','Food','Video Games','Oil and Gas','Materials'
-'AAAAG','Technology','Automotive','Health','Internet','100 Most Popular','REIT','Upcoming Earnings'
-'AAAAF','100 Most Popular','Consumer Products','REIT','Energy','Upcoming Earnings','Manufacturing','Social Media'
-'AAAAE','Consumer Products','Electronic','Aerospace','Energy','Retail','Materials','Health'
-'AAAAD','Internet','Electronic','Consumer Products','Energy','Finance','Technology','New On TradeDesk'
-'AAAAC','Technology','Consumer Products','Manufacturing','REIT','Entertainment','Oil and Gas','ETF'
-'AAAAB','Finance','New On TradeDesk','Retail','ETF','Technology','Video Games','Oil and Gas'
-'AAAAA','Finance','Internet','Banking','Oil and Gas','REIT','Manufacturing','Technology'
+symbol|tag0|tag1|tag2|tag3|tag4|tag5|tag6
+"AAAAO"|"Consumer Products"|"Manufacturing"|"Software Service"|"REIT"|"Video Games"|"ETF"|"Materials"
+"AAAAN"|"Software Service"|"Manufacturing"|"Electronic"|"Automotive"|"REIT"|"Retail"|"Consumer Products"
+"AAAAM"|"Food"|"Technology"|"Health"|"Upcoming Earnings"|"Video Games"|"Materials"|"Finance"
+"AAAAL"|"Energy"|"Electronic"|"Health"|"Technology"|"Software Service"|"Banking"|"REIT"
+"AAAAK"|"Retail"|"Upcoming Earnings"|"Consumer Products"|"100 Most Popular"|"Entertainment"|"Technology"|"Materials"
+"AAAAJ"|"Food"|"Internet"|"Entertainment"|"Energy"|"Aerospace"|"Semiconductors"|"Oil and Gas"
+"AAAAI"|"Video Games"|"REIT"|"Semiconductors"|"Manufacturing"|"Finance"|"Banking"|"New On TradeDesk"
+"AAAAH"|"REIT"|"Semiconductors"|"Food"|"Software Service"|"Aerospace"|"Materials"|"Consumer Products"
+"AAAAG"|"Entertainment"|"Finance"|"Food"|"Manufacturing"|"Semiconductors"|"ETF"|"Materials"
+"AAAAF"|"Electronic"|"Aerospace"|"Manufacturing"|"Health"|"REIT"|"Automotive"|"Video Games"
+"AAAAE"|"Internet"|"Oil and Gas"|"REIT"|"Upcoming Earnings"|"Social Media"|"Electronic"|"Automotive"
+"AAAAD"|"Video Games"|"100 Most Popular"|"Retail"|"Finance"|"Software Service"|"Social Media"|"Health"
+"AAAAC"|"Video Games"|"Banking"|"ETF"|"Technology"|"Internet"|"Energy"|"Automotive"
+"AAAAB"|"Social Media"|"Retail"|"Internet"|"Automotive"|"Semiconductors"|"100 Most Popular"|"Pharmaceutical"
+"AAAAA"|"Materials"|"Semiconductors"|"Upcoming Earnings"|"Consumer Products"|"REIT"|"Pharmaceutical"|"Internet"

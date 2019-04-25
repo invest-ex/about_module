@@ -1,6 +1,6 @@
 const faker = require('faker');
 const fs = require('fs');
-const file = fs.createWriteStream('./stockNoTags.csv');
+const file = fs.createWriteStream('./stocksNoTags.csv');
 
 console.time('stocks');
 
@@ -43,7 +43,7 @@ const MC = [
 ];
 
 const headers = ['symbol', 'CEO', 'employees', 'HQc', 'HQs', 'founded', 'MC', 'PER', 'description', 'high', 'low', 'open', 'volume', 'yearHigh', 'yearLow'];
-file.write(`${headers.join(',')}\n`);
+file.write(`${headers.join('|')}\n`);
 
 
 function generateCompanyInfo() {
@@ -76,15 +76,18 @@ function writetenMillionTimes(writer, encoding, callback) {
       i--;
       let companyInfo = generateCompanyInfo();
       companyInfo.symbol = symbols[i];
-      const dataArr = headers.map(columnName => {
-        const value = companyInfo[columnName];
-        if (typeof value === "number") {
-          return value;
-        } else {
-          return `'${value}'`;
-        }
-      });
-      const data = `${dataArr.join(',')}\n`;
+      companyInfo.part = symbols[i][0]
+      let data = `${headers.map(columnName => JSON.stringify(companyInfo[columnName])).join('|')}\n`;
+
+      // const dataArr = headers.map(columnName => {
+      //   const value = companyInfo[columnName];
+      //   if (typeof value === "number") {
+      //     return value;
+      //   } else {
+      //     return `'${value}'`;
+      //   }
+      // });
+      // const data = `${dataArr.join(',')}\n`;
       if (i === 0) {
         // last time!
         writer.write(data, encoding, callback);
