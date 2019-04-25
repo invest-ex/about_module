@@ -12,7 +12,6 @@ npm install
 npm run react-dev
 npm run generateCSVs
 npm run seedPostgreSQL
-npm run seedCassandra
 npm start
 ``
 
