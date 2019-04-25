@@ -3,9 +3,5 @@ bundle.js
 coverage
 InformationModule.pem
 ./server/postgresLogin.js
-stockNoTags.csv
-stocks.csv
-tags.csv
-users.csv
-stock.csv
-stocksNoTags.csv
+data/stocks.csv
+data/users.csv
