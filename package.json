@@ -10,8 +10,7 @@
     "react-dev": "webpack -p",
     "db:setup": "node database/seed.js",
     "generateCSVs": "node database/csvUsers.js > users.csv ; node database/csvStocks.js",
-    "seed:PostgreSQL": "psql < database/postgres.sql",
-    "seed:Cassandra": "cqlsh < database/cassandra.cql"
+    "seed:PostgreSQL": "psql < database/postgres.sql"
   },
   "jest": {
     "snapshotSerializers": [
