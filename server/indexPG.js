@@ -1,12 +1,20 @@
 var pgp = require('pg-promise')(/* options */);
-var { user, password } = require('../database/postgresLogin.js');
-var db = pgp(`postgres://${user}:${password}@localhost:5432/test`);
+var { user, password } = require('./postgresLogin.js');
+var db = pgp(`postgres://${user}:${password}@localhost:5432/aboutmodule`);
 
-// console.time('postgres');
-// db.any('SELECT * FROM testConnection', [true])
-//     .then(function(data) {
-//         console.timeEnd('postgres');
-//     })
-//     .catch(function(error) {
-//         // error;
-//     });
+
+let findStock = function(inputTicker) {
+  const ticker = inputTicker.toUpperCase();
+  console.time('postgres');
+  console.log('here');
+  db.any('SELECT * FROM stocks where symbol = $1', [ticker])
+      .then(function(data) {
+        console.log(data);
+          console.timeEnd('postgres');
+      })
+      .catch(function(error) {
+          // error;
+      });
+};
+
+findStock('aaaaa');
