@@ -1,5 +1,7 @@
 node_modules
 bundle.js
+client/dist/bundle.js.br
+client/dist/bundle.js.gz
 coverage
 InformationModule.pem
 ./server/postgresLogin.js
