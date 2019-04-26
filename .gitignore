@@ -7,3 +7,5 @@ InformationModule.pem
 ./server/postgresLogin.js
 data/stocks.csv
 data/users.csv
+newrelic_agent.log
+server/newrelic.js
