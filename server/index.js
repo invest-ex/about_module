@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -20,7 +21,7 @@ app.listen(port, () => console.log(`APP IS LISTENING ON ${port}`));
 //   res.sendFile(path.join(__dirname, '../client/dist/index.html'))
 // });
 
-// app.use('/', express.static(path.join(__dirname, '../client/dist')));
+app.use('/', express.static(path.join(__dirname, '../client/dist')));
 app.use('/stocks/:ticker', express.static(path.join(__dirname, '../client/dist')));
 
 // COMPANY INFO ENDPOINTS

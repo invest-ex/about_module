@@ -52,6 +52,7 @@
     "faker": "^4.1.0",
     "file-loader": "^3.0.1",
     "mongoose": "^5.4.20",
+    "newrelic": "^5.7.0",
     "nodemon": "^1.18.10",
     "pg-promise": "^8.6.5",
     "react": "^16.8.4",
