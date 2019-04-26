@@ -22,7 +22,7 @@ const UserInfo1 = (props) => {
                 <td id="userInfo1Right">
                   <span className="totalReturn">
                +$
-                    {stock.tr.toFixed(2)}
+                    {stock.tr}
                   </span>
                   <span>
                   (
@@ -39,7 +39,7 @@ const UserInfo1 = (props) => {
                   {(stock.equity - stock.cost) > 0 ? '+' : '-'}
                   <span className="totalReturn">
                  $
-                    {(stock.equity - stock.cost)}
+                    {(stock.equity - stock.cost).toFixed(2)}
                   </span>
                   <span>
                     (
