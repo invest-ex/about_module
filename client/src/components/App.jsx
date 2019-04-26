@@ -4,7 +4,6 @@ import UserInfo2 from './UserInfo2.jsx';
 import About from './About.jsx';
 import Collections from './Collections.jsx';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,13 +22,11 @@ class App extends React.Component {
     const url = window.location.pathname;
     const splitUrl = url.split('/');
     const symbolId = splitUrl[splitUrl.length - 2];
-    console.log(symbolId);
     fetch(`/api/about/${symbolId}`, {
       method: 'GET',
     })
       .then(response => response.json())
       .then((parsedJSON) => {
-        console.log(parsedJSON);
         this.setState({
           stockInfo: parsedJSON,
         });
@@ -38,8 +35,8 @@ class App extends React.Component {
   }
 
   getUserInfo() {
-    const userId = Math.ceil(Math.random() * 100);
-    fetch(`/api/user/${userId}`, {
+    const userId = Math.ceil(Math.random() * 10000000);
+    fetch(`/api/users/${userId}`, {
       method: 'GET',
     })
       .then(response => response.json())

@@ -5,15 +5,15 @@ const UserInfo1 = (props) => {
     <div>
       {props.userInfo.map((stock) => {
         return (
-          <table className="userInfo1" key={stock.userId}>
+          <table className="userInfo1" key={stock.userid}>
             <thead>
               <caption id="userEquity">Your Equity</caption>
-              <div id="userEquityNum">${(stock.equity).toLocaleString()}</div>
+              <div id="userEquityNum">${stock.equity}</div>
             </thead>
             <tbody>
               <tr>
                 <td id="userInfo1Left">Cost</td>
-                <td id="userInfo1Right">${(stock.cost).toLocaleString()}</td>
+                <td id="userInfo1Right">${stock.cost}</td>
               </tr>
             </tbody>
             <tbody>
@@ -22,11 +22,11 @@ const UserInfo1 = (props) => {
                 <td id="userInfo1Right">
                   <span className="totalReturn">
                +$
-                    {stock.TR.toLocaleString()}
+                    {stock.tr.toFixed(2)}
                   </span>
                   <span>
                   (
-                    {((stock.TR / stock.equity) * 100).toFixed(2)}
+                    {((stock.tr / stock.equity) * 100).toFixed(2)}
                   %)
                   </span>
                 </td>
@@ -39,7 +39,7 @@ const UserInfo1 = (props) => {
                   {(stock.equity - stock.cost) > 0 ? '+' : '-'}
                   <span className="totalReturn">
                  $
-                    {(stock.equity - stock.cost).toLocaleString()}
+                    {(stock.equity - stock.cost)}
                   </span>
                   <span>
                     (

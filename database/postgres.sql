@@ -15,7 +15,7 @@ pd text not null,
 av float8);
 
 copy users (userId, equity, cost, shares, tr, pd, av) 
-from '/Users/MarissaShieh/Desktop/Hack Reactor/SDC/about_module/users.csv' delimiter '|' csv header;
+from '/Users/MarissaShieh/Desktop/Hack Reactor/SDC/about_module/data/users.csv' delimiter '|' csv header;
 
 create table stocks(                                                                                       
 symbol text primary key,                                                                               
@@ -37,4 +37,4 @@ tags text[7]);
 
 copy stocks (symbol, ceo, employees, hqc, hqs,founded, mc, per, 
 description, high, low, open, volume, yearhigh, yearlow, tags) 
-from '/Users/MarissaShieh/Desktop/Hack Reactor/SDC/about_module/stocks.csv' delimiter '|' csv header;
+from '/Users/MarissaShieh/Desktop/Hack Reactor/SDC/about_module/data/stocks.csv' delimiter '|' csv header;

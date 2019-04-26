@@ -24,20 +24,9 @@ for (let i = 1; i <= 10000000; i++) {
     PD: faker.finance.amount(0, 100, 2),
     AV: AV[Math.floor(Math.random() * AV.length)],
   };
-  // const insertUsers = () => {
-  //   User.create(sampleUsers)
-  //     .then(() => db.close())
-  //     .catch(err => console.log('errrerererer2', err));
-  // };
-  // insertUsers();
-  const csvData = headers.map(columnName => {
-    const value = sampleUsers[columnName];
-    if (typeof value === "number") {
-      return value;
-    } else {
-      return `'${value}'`
-    }
-  });
+
+  const csvData = headers.map(columnName => JSON.stringify(sampleUsers[columnName]));
+
   const csv = csvData.join('|');
   console.log(csv);
 }

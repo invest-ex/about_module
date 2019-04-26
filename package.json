@@ -5,10 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "jest --coverage || true",
-    "start": "node server/index.js",
+    "start": "nodemon server/index.js",
     "react-dev:watch": "webpack -p --watch",
     "react-dev": "webpack -p",
-    "db:setup": "node database/seed.js",
     "generateCSVs": "node database/csvUsers.js > data/users.csv ; node database/csvStocks.js",
     "seed:PostgreSQL": "psql < database/postgres.sql"
   },
@@ -54,6 +53,7 @@
     "file-loader": "^3.0.1",
     "mongoose": "^5.4.20",
     "nodemon": "^1.18.10",
+    "pg-promise": "^8.6.5",
     "react": "^16.8.4",
     "react-css-modules": "^4.7.9",
     "react-dom": "^16.8.5",

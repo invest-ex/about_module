@@ -5,12 +5,12 @@ const UserInfo2 = (props) => {
     <div>
       {props.userInfo.map((stock) => {
         return (
-          <table className="userInfo2" key={stock.userId}>
+          <table className="userInfo2" key={stock.userid}>
             <thead>
               <caption id="userAv">Your Average Cost</caption>
               <div id="userAvNum">
               $
-                {stock.AV}
+                {stock.av}
               </div>
             </thead>
             <tbody>
@@ -23,7 +23,7 @@ const UserInfo2 = (props) => {
               <tr>
                 <td id="userInfo2Left">Portfolio Diversity</td>
                 <td id="userInfo2Right">
-                  {stock.PD}
+                  {stock.pd}
                 %
                 </td>
               </tr>

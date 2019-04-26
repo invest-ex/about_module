@@ -1,20 +1,33 @@
-var pgp = require('pg-promise')(/* options */);
-var { user, password } = require('./postgresLogin.js');
-var db = pgp(`postgres://${user}:${password}@localhost:5432/aboutmodule`);
+const pgp = require('pg-promise')(/* options */);
+const { user, password } = require('./postgresLogin.js');
+
+const db = pgp(`postgres://${user}:${password}@localhost:5432/aboutmodule`);
 
 
-let findStock = function(inputTicker) {
+module.exports.findDeleteStock = (request, inputTicker) => {
   const ticker = inputTicker.toUpperCase();
-  console.time('postgres');
-  console.log('here');
-  db.any('SELECT * FROM stocks where symbol = $1', [ticker])
-      .then(function(data) {
-        console.log(data);
-          console.timeEnd('postgres');
-      })
-      .catch(function(error) {
-          // error;
-      });
+  const stringRequest = `${request} * FROM stocks where symbol = $1`;
+  return db.any(stringRequest, [ticker]);
 };
 
-findStock('aaaaa');
+// module.exports.putStock = (inputTicker, callback) => {
+//   const ticker = inputTicker.toUpperCase();
+//   console.time('delete stock');
+//   return db.one('REPLACE * FROM stocks where symbol = $1', [ticker])
+//     .then((data) => {
+
+
+
+//       console.log(data);
+//       console.timeEnd('delete stock');
+//       callback(data);
+//     })
+//     .catch((error) => {
+//       console.error(error); //TURN INTO RES.SENDSTATUS(404)
+//     });
+// };
+
+module.exports.findDeleteUser = (request, userId) => {
+  const stringRequest = `${request} * FROM users where userId = $1`;
+  return db.any(stringRequest, [Number(userId)]);
+};
