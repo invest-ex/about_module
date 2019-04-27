@@ -56,6 +56,7 @@ function generateMiddle() {
   return middle;
 }
 
+const testStocks = [];
 function generateStocks () {
   const popular = generatePopular();
   const middle = generateMiddle();
@@ -65,14 +66,16 @@ function generateStocks () {
     const chosen = Math.random();
     if (chosen <= 0.5) {
       const tickerSpot = Math.floor(Math.random() * popular.length);
-      console.log(JSON.stringify(popular[tickerSpot]));
+      testStocks.push(JSON.stringify(popular[tickerSpot]));
     } else if (chosen <= 0.8) {
       const tickerSpot = Math.floor(Math.random() * middle.length);
-      console.log(JSON.stringify(middle[tickerSpot]));
+      testStocks.push(JSON.stringify(middle[tickerSpot]));
     } else {
       const tickerSpot = Math.floor(Math.random() * all.length);
-      console.log(JSON.stringify(all[tickerSpot]));
+      testStocks.push(JSON.stringify(all[tickerSpot]));
     }
   }
 }
 generateStocks();
+
+export default testStocks;
