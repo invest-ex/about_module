@@ -2,7 +2,7 @@ import http from "k6/http";
 import { check } from "k6";
 export const options = {
   vus: 100,
-  duration: "1m"
+  duration: "2m"
 }; //makes 100 users constantly making requests, run for 5 minutes
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUV'.split('');
