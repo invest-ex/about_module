@@ -3,7 +3,7 @@ import { check } from "k6";
 export const options = {
   vus: 100,
   duration: "2m"
-}; //makes 100 users constantly making requests, run for 5 minutes
+}; //makes 100 users constantly making requests, run for 2 minutes
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUV'.split('');
 

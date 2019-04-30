@@ -1,3 +1,4 @@
+require('newrelic');
 const cluster = require('cluster');
 const http = require('http');
 const numCPUs = require('os').cpus().length;
@@ -14,19 +15,25 @@ if (cluster.isMaster) {
     console.log(`worker ${worker.process.pid} died`);
   });
 } else {
-  require('newrelic');
   const express = require('express');
   const bodyParser = require('body-parser');
   const path = require('path');
   const compression = require('compression');
   const request = require('./indexPG.js');
+  const redis = require('redis');
 
+  const client = redis.createClient();
+  
   const app = express();
   const port = 3003;
 
+  client.on('error', (err) => {
+    console.log('Error connecting to Redis ', err);
+  });
+
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(compression());
+  // app.use(compression());
 
   app.listen(port, () => console.log(`APP IS LISTENING ON ${port}`));
 
@@ -35,9 +42,21 @@ if (cluster.isMaster) {
 
   // COMPANY INFO ENDPOINTS
   app.get('/api/about/:symbol', (req, res) => {
-    request.findDeleteStock('SELECT', req.params.symbol)
-      .then(data => res.send(data))
-      .catch(() => res.sendStatus(404));
+    const symbol = req.params.symbol;
+    client.mget(symbol, (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      if (result) {
+        res.send(result);
+      } else {
+        request.findDeleteStock('SELECT', symbol)
+        .then(data => {
+          client.mset(symbol, JSON.stringify(data))
+          res.send(data)})
+        .catch(() => res.sendStatus(404));
+      }
+    });
   });
 
   app.delete('/api/about/:symbol', (req, res) => {
@@ -59,9 +78,18 @@ if (cluster.isMaster) {
 
   // USER INFO ENDPOINTS
   app.get('/api/users/:userId', (req, res) => {
-    request.findDeleteUser('SELECT', req.params.userId)
-      .then(data => res.send(data))
-      .catch(() => res.sendStatus(404));
+    const userId = req.params.userId;
+    client.mget(userId, (err, result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        request.findDeleteUser('SELECT', userId)
+        .then(data => {
+          client.mset(userId, JSON.stringify(data))
+          res.send(data)})
+        .catch(() => res.sendStatus(404));
+      }
+    });
   });
 
   app.delete('/api/users/:userId', (req, res) => {
