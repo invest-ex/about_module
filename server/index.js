@@ -33,7 +33,7 @@ if (cluster.isMaster) {
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
-  // app.use(compression());
+  app.use(compression());
 
   app.listen(port, () => console.log(`APP IS LISTENING ON ${port}`));
 
