@@ -1,27 +1,111 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-// const findStock = require('../database/Stock.js');
-// const findTag = require('../database/Tag.js');
-const compression = require('compression');
-const request = require('./request.js');
+require('newrelic');
+const cluster = require('cluster');
+const http = require('http');
+const numCPUs = require('os').cpus().length;
 
-const app = express();
-const port = 3003;
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(compression());
+  // Fork workers.
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
 
-app.listen(port, () => console.log('APP IS LISTENING'));
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+  });
+} else {
+  const express = require('express');
+  const bodyParser = require('body-parser');
+  const path = require('path');
+  const compression = require('compression');
+  const request = require('./indexPG.js');
+  const redis = require('redis');
 
-app.use('/', express.static(path.join(__dirname, '../client/dist')));
-app.use('/stocks/:symbol', express.static(path.join(__dirname, '../client/dist')));
+  const client = redis.createClient();
+  
+  const app = express();
+  const port = 3003;
 
-app.get('/api/quotes/:symbol', (req, res) => {
-  request.findStock(req.params).then(data => res.send(data));
-});
+  client.on('error', (err) => {
+    console.log('Error connecting to Redis ', err);
+  });
 
-// app.get('/stocks/tags/:tag', (req, res) => {
-//   request.findTag(req.params).then(data => res.send(data));
-// });
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+  // app.use(compression());
+
+  app.listen(port, () => console.log(`APP IS LISTENING ON ${port}`));
+
+  app.use('/', express.static(path.join(__dirname, '../client/dist')));
+  app.use('/stocks/:ticker', express.static(path.join(__dirname, '../client/dist')));
+
+  // COMPANY INFO ENDPOINTS
+  app.get('/api/about/:symbol', (req, res) => {
+    const symbol = req.params.symbol;
+    client.mget(symbol, (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      if (result) {
+        res.send(result);
+      } else {
+        request.findDeleteStock('SELECT', symbol)
+        .then(data => {
+          client.mset(symbol, JSON.stringify(data))
+          res.send(data)})
+        .catch(() => res.sendStatus(404));
+      }
+    });
+  });
+
+  app.delete('/api/about/:symbol', (req, res) => {
+    request.findDeleteStock('DELETE', req.params.symbol)
+      .then(count => res.send(count))
+      .catch(() => res.sendStatus(404));
+  });
+
+  app.post('/api/about/', (req, res) => {
+    request.postStock(req.body)
+      .then(() => res.sendStatus(200))
+      .catch(() => res.sendStatus(400));
+  });
+
+  // app.put('/api/about/:symbol', (req, res) => {
+  //   request.findStock('REPLACE', req.params.symbol).then(data => res.send(data));
+  // });
+
+
+  // USER INFO ENDPOINTS
+  app.get('/api/users/:userId', (req, res) => {
+    const userId = req.params.userId;
+    client.mget(userId, (err, result) => {
+      if (result) {
+        res.send(result);
+      } else {
+        request.findDeleteUser('SELECT', userId)
+        .then(data => {
+          client.mset(userId, JSON.stringify(data))
+          res.send(data)})
+        .catch(() => res.sendStatus(404));
+      }
+    });
+  });
+
+  app.delete('/api/users/:userId', (req, res) => {
+    request.findDeleteUser('DELETE', req.params.userId)
+      .then(count => res.send(count))
+      .catch(() => res.sendStatus(404));
+  });
+
+  app.post('/api/users/', (req, res) => {
+    request.postUser(req.body)
+      .then(data => res.send(data))
+      .catch(() => res.sendStatus(400));
+  });
+
+  // app.put('/api/user/:userId', (req, res) => {
+  //   request.findUser(req.params.userId).then(data => res.send(data));
+  // });
+  console.log(`Worker ${process.pid} started`);
+}
