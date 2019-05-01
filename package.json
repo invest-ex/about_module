@@ -9,7 +9,7 @@
     "react-dev:watch": "webpack -p --watch",
     "react-dev": "webpack -p",
     "generateCSVs": "node database/csvUsers.js > data/users.csv ; node database/csvStocks.js",
-    "seed:PostgreSQL": "psql < database/postgres.sql"
+    "seed:PostgreSQL": "psql postgres ec2-user < database/postgres.sql"
   },
   "jest": {
     "snapshotSerializers": [

@@ -1,8 +1,8 @@
 import http from "k6/http";
 import { check } from "k6";
 export const options = {
-  vus: 100,
-  duration: "2m"
+  vus: 10,
+  duration: "10s"
 }; //makes 100 users constantly making requests, run for 2 minutes
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUV'.split('');
