@@ -47,8 +47,8 @@ if (cluster.isMaster) {
       if (err) {
         console.log(err);
       }
-      if (result) {
-        res.send(result);
+      if (result[0] !== null) {
+        res.send(result[0]);
       } else {
         request.findDeleteStock('SELECT', symbol)
         .then(data => {
@@ -80,8 +80,8 @@ if (cluster.isMaster) {
   app.get('/api/users/:userId', (req, res) => {
     const userId = req.params.userId;
     client.mget(userId, (err, result) => {
-      if (result) {
-        res.send(result);
+      if (result[0] !== null) {
+        res.send(result[0]);
       } else {
         request.findDeleteUser('SELECT', userId)
         .then(data => {
