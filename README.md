@@ -11,7 +11,7 @@ From within the root directory:
 npm install
 npm run react-dev
 npm run generateCSVs
-npm run seedPostgreSQL
+npm run seed:PostgreSQL
 npm start
 ``
 
