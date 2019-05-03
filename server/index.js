@@ -39,22 +39,32 @@ if (cluster.isMaster) {
 
   app.use('/', express.static(path.join(__dirname, '../client/dist')));
   app.use('/stocks/:ticker', express.static(path.join(__dirname, '../client/dist')));
+  app.get('/loaderio-2c196fe61429d319e65cfdf41272e031.txt', (req, res) => {
+    res.sendFile('/home/ec2-user/about_module/server/loaderio-2c196fe61429d319e65cfdf41272e031.txt');
+  });
+  app.get('/loaderInfo', (req, res) => {
+    res.sendFile('/home/ec2-user/about_module/server/loader.json');
+  });
+
 
   // COMPANY INFO ENDPOINTS
   app.get('/api/about/:symbol', (req, res) => {
-    const symbol = req.params.symbol;
+    const symbol = req.params.symbol.toUpperCase();
     client.mget(symbol, (err, result) => {
-      if (err) {
+     if (err) {
         console.log(err);
       }
-      if (result[0] !== null) {
-        res.send(result[0]);
-      } else {
+      if (JSON.parse(result)[0] !== null) {
+        res.send(JSON.parse(result));
+     } else {
         request.findDeleteStock('SELECT', symbol)
         .then(data => {
           client.mset(symbol, JSON.stringify(data))
           res.send(data)})
-        .catch(() => res.sendStatus(404));
+        .catch((error) => {
+	console.log(error);
+	return res.sendStatus(404);
+	});
       }
     });
   });
@@ -81,7 +91,7 @@ if (cluster.isMaster) {
     const userId = req.params.userId;
     client.mget(userId, (err, result) => {
       if (result[0] !== null) {
-        res.send(result[0]);
+        res.send(result);
       } else {
         request.findDeleteUser('SELECT', userId)
         .then(data => {
