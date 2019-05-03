@@ -42,8 +42,8 @@ if (cluster.isMaster) {
 
   app.use('/', express.static(path.join(__dirname, '../client/dist')));
   app.use('/stocks/:ticker', express.static(path.join(__dirname, '../client/dist')));
-  app.get('/loaderio-2c196fe61429d319e65cfdf41272e031.txt', (req, res) => {
-    res.sendFile('/home/ec2-user/about_module/server/loaderio-2c196fe61429d319e65cfdf41272e031.txt');
+  app.get('/loaderio-09abdb181b8d6b079fdb1668400c671d.txt', (req, res) => {
+    res.sendFile('/home/ec2-user/about_module/server/loaderio-09abdb181b8d6b079fdb1668400c671d.txt');
   });
   app.get('/loaderInfo', (req, res) => {
     res.sendFile('/home/ec2-user/about_module/server/loader.json');
@@ -57,18 +57,15 @@ if (cluster.isMaster) {
      if (err) {
         console.log(err);
       }
-	console.log('result[0] ', result[0]);
       if (result[0] !== null) {
-	console.log('getting from redis');
         res.send(result[0]);
      } else {
         request.findDeleteStock('SELECT', symbol)
         .then(data => {
-		console.log('getting from postgres');
           client.mset(symbol, JSON.stringify(data))
           res.send(data)})
         .catch((error) => {
-	console.log(error);
+       	console.log(error);
 	return res.sendStatus(404);
 	});
       }
