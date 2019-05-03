@@ -94,7 +94,7 @@ if (cluster.isMaster) {
     const userId = req.params.userId;
     client.mget(userId, (err, result) => {
       if (result[0] !== null) {
-        res.send(result);
+        res.send(result[0]);
       } else {
         request.findDeleteUser('SELECT', userId)
         .then(data => {
