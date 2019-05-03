@@ -1,8 +1,15 @@
+console.log('in indexPG');
 const pgp = require('pg-promise')(/* options */);
-const { user, password } = require('./postgresLogin.js');
+const connection = {
+host: '54.183.212.98',
+port: 5432,
+database: 'aboutmodule',
+user: 'ec2-user',
+password: 'PASSWORD_HERE'
+};
+const db = pgp(connection);
 
-const db = pgp(`postgres://${user}:${password}@localhost:5432/aboutmodule`);
-
+console.log(connection);
 
 module.exports.findDeleteStock = (request, inputTicker) => {
   const ticker = inputTicker.toUpperCase();
