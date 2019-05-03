@@ -22,7 +22,10 @@ if (cluster.isMaster) {
   const request = require('./indexPG.js');
   const redis = require('redis');
 
-  const client = redis.createClient();
+  const client = redis.createClient({
+    port: 6379,
+    host: '172.31.21.10', 
+  });
   
   const app = express();
   const port = 3003;
@@ -54,11 +57,14 @@ if (cluster.isMaster) {
      if (err) {
         console.log(err);
       }
-      if (JSON.parse(result)[0] !== null) {
-        res.send(JSON.parse(result));
+	console.log('result[0] ', result[0]);
+      if (result[0] !== null) {
+	console.log('getting from redis');
+        res.send(result[0]);
      } else {
         request.findDeleteStock('SELECT', symbol)
         .then(data => {
+		console.log('getting from postgres');
           client.mset(symbol, JSON.stringify(data))
           res.send(data)})
         .catch((error) => {
