@@ -1,5 +1,3 @@
-console.log('stock');
-
 // Make tickers
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUV'.split('');
 const symbols = [];
@@ -62,20 +60,24 @@ function generateStocks () {
   const middle = generateMiddle();
   const all = symbols;
 
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 100000; i++) {
     const chosen = Math.random();
     if (chosen <= 0.5) {
       const tickerSpot = Math.floor(Math.random() * popular.length);
-      testStocks.push(JSON.stringify(popular[tickerSpot]));
+      testStocks.push([popular[tickerSpot]]);
     } else if (chosen <= 0.8) {
       const tickerSpot = Math.floor(Math.random() * middle.length);
-      testStocks.push(JSON.stringify(middle[tickerSpot]));
+      testStocks.push([middle[tickerSpot]]);
     } else {
       const tickerSpot = Math.floor(Math.random() * all.length);
-      testStocks.push(JSON.stringify(all[tickerSpot]));
+      testStocks.push([all[tickerSpot]]);
     }
   }
+  const test = {
+    "keys": ["symbol"],
+    "values": testStocks
+  };
+  console.log(JSON.stringify(test));
 }
 generateStocks();
 
-export default testStocks;

@@ -14,4 +14,4 @@ pd text not null,
 av float8);
 
 copy users (userId, equity, cost, shares, tr, pd, av) 
-from '/Users/MarissaShieh/Desktop/Hack Reactor/SDC/about_module/data/users.csv' delimiter '|' csv header;
+from '/home/ec2-user/about_module/data/users.csv' delimiter '|' csv header;
